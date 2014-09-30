@@ -28,19 +28,29 @@
 #define RLED _LATA4
 
 //button pins
-#define BUTTON PORTAbits.RA1 //_RA0
+#define BUTTON PORTAbits.RA0 //_RA0
 
 //led direction controls
 #define GLED_PIN_DIRECTION _TRISA3
 #define RLED_PIN_DIRECTION _TRISA4
 
 //button direction controls
-#define BUTTON_PIN_DIRECTION _TRISA1
+#define BUTTON_PIN_DIRECTION _TRISA0
+
+// The SparkFun breakout board defaults to 1, set to 0 if SA0 jumper on the bottom of the board is set
+#define MMA8452_ADDRESS 0x1D  // 0x1D if SA0 is high, 0x1C if low
+#define GSCALE 2 // Sets full-scale range to +/-2, 4, or 8g. Used to calc real g values.
+//Define a few of the registers that we will be accessing on the MMA8452
+#define OUT_X_MSB 0x01
+#define XYZ_DATA_CFG  0x0E
+#define WHO_AM_I   0x0D
+#define CTRL_REG1  0x2A
 
 void init_time(void);           //initialize timer
 void init_LEDs(void);           //initialize LED outputs
-void init_BUTTONs(void);           //initialize LED outputs
-void init_PWM(void);
+void init_BUTTONs(void);        //initialize Button outputs
+void init_PWM(void);            //initialize PWM outputs
+void init_I2C(void);
 void delay(unsigned int);
 
 
@@ -66,6 +76,12 @@ int main(){
     }
     return (EXIT_SUCCESS);
 }
+
+void init_I2C(void){
+    I2C1CONbits.I2CEN=1;  // Enables the I2Cx module and configures the SDAx and SCLx pins as serial port pins
+
+}
+
 
 void init_time(void){
    /* Configure Oscillator to operate the device at 40Mhz
@@ -103,6 +119,7 @@ void init_PWM(void){
 }
 
 void init_BUTTONs(void){
+    AD1PCFGLbits.PCFG0=1;
     BUTTON_PIN_DIRECTION=INPUT;
 }
 
