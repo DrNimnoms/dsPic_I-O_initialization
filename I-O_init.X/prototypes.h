@@ -1,0 +1,36 @@
+//================================================================================
+//	FILE NAME:		definitions.h
+//
+//	DESCRIPTION: This file includes definitions for various useful values and
+//                   references.  The clock frequency is defined, several useful
+//                   pins and pin latch states are mapped to variables as well.
+//
+//	AUTHOR: Nima Ghods
+//
+//	COPYRIGHT 2014, Coactive Drive Corporation
+//
+//================================================================================
+
+#ifndef PROTOTYPES_H
+#define	PROTOTYPES_H
+
+#ifdef	__cplusplus
+extern "C" {
+#endif
+
+//initializations...
+void init_time(void);           //initialize timer
+void init_LEDs(void);           //initialize LED outputs
+void init_BUTTONs(void);        //initialize Button outputs
+void init_PWM(void);            //initialize PWM outputs
+void init_PPS_mappings(void);   //set pin mapping
+void init_I2C(void);
+void delay(unsigned int);
+
+
+#ifdef	__cplusplus
+}
+#endif
+
+#endif	/* PROTOTYPES_H */
+
