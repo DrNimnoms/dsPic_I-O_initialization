@@ -18,6 +18,7 @@
       <itemPath>main.c</itemPath>
       <itemPath>dspic33config.c</itemPath>
       <itemPath>Init.c</itemPath>
+      <itemPath>/Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/ADC_func.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -36,7 +37,7 @@
         <platformTool>ICD3PlatformTool</platformTool>
         <languageToolchain>XC16</languageToolchain>
         <languageToolchainVersion>1.21</languageToolchainVersion>
-        <platform>3</platform>
+        <platform>4</platform>
       </toolsSet>
       <compileType>
         <linkerTool>

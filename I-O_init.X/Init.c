@@ -22,31 +22,23 @@
 
 void init_I2C(void){
 
-    I2C_Add_PIN_DIRECTION = INPUT;
-    I2C_Add_PIN_ANALOG = ADCOFF;
+    I2C_Add_PIN_DIRECTION = INPUT;      // set I2C address pin to input
+    I2C_Add_PIN_ANALOG = OFF;        // set I2C address pin to digital
+    //I2C_Add                           //I2C_Add is 0 or 1 depending on which gemini drive control it is on the shield
 
     I2C1CONbits.I2CEN=1;  // Enables the I2Cx module and configures the SDAx and SCLx pins as serial port pins
 
 }
 
 void init_ADCs(void){
-    POT1_PIN_DIRECTION = INPUT;
-    POT2_PIN_DIRECTION = INPUT;
-    POT1_PIN_ANALOG = ADCON;
-    POT2_PIN_ANALOG = ADCON;
-}
-
-void init_PPS_mappings(void)
-{
-//    //quadrature encoder 1
-//    _QEA1R = 5; //0b00101;  //RP5
-//    _QEB1R = 6; //0b00110;  //RP6
-//    _INDX1R = 7; //0b00111; //RP7
-//
-//    //quadrature encoder 2
-//    _QEA2R = 8;
-//    _QEB2R = 9;
-//    _INDX2R = 10;
+    POT1_PIN_DIRECTION = INPUT; // set ADC pin to input
+    POT2_PIN_DIRECTION = INPUT; // set ADC pin to input
+    POT1_PIN_ANALOG = ON;       // set ADC pin to analog
+    POT2_PIN_ANALOG = ON;       // set ADC pin to analog
+    AD1CON2bits.VCFG=0;         // sets voltage reference to AVdd and AVss
+    AD1CON2bits.CHPS=1;
+    AD1CON1bits.ASAM=1;         // Sampling begins immediately after last conversion
+    AD1CON1bits.ADON=1;         // ADC module is operating
 }
 
 
@@ -90,4 +82,111 @@ void init_LEDs(void)
     RLED_PIN_DIRECTION = OUTPUT;
     GLED=OFF;
     RLED=OFF;
+}
+
+void init_PPS_mappings(void)
+{
+    //quadrature encoder 1
+    _QEA1R = 2;   //RP2
+    _QEB1R = 3;   //RP3
+    _INDX1R = 4;  //RP4
+
+    //quadrature encoder 2
+    _QEA2R = 5; //RP5
+    _QEB2R = 6; //RP6
+    _INDX2R = 7; //RP7
+}
+
+void init_QEI(void)
+{
+    //-------module 1--------
+
+    //Make pins associated with encoder inputs...
+    _TRISB2 = INPUT;
+    _TRISB3 = INPUT;
+    _TRISB4 = INPUT;
+
+    QEI1CONbits.QEIM = 0; //disable QEI module for setup
+    QEI1CONbits.CNTERR = 0; //clear count errors
+    //QEI1CONbits.QEISIDLE = 0; //don't stop during sleep
+    QEI1CONbits.SWPAB = 0; //QEA and B not swapped
+    QEI1CONbits.PCDOUT = 1; //normal io pin operation
+    QEI1CONbits.POSRES = 1; //index pulse resets position
+    QEI1CONbits.QEIM = 6; //0b110; //position counter reset by index //101;//
+    POS1CNT = 0; //reset position counter
+    MAX1CNT = 256; //reset after 512 counts
+    DFLT1CONbits.QEOUT = 1;
+    DFLT1CONbits.QECK = 1;
+    //------------------------
+
+
+
+    //========module 2=========
+
+    //Make pins associated with encoder inputs...
+    _TRISB5 = INPUT;
+    _TRISB6 = INPUT;
+    _TRISB7 = INPUT;
+
+    QEI2CONbits.QEIM = 0; //disable QEI module for setup
+    QEI2CONbits.CNTERR = 0; //clear count errors
+    //QEI1CONbits.QEISIDLE = 0; //don't stop during sleep
+    QEI2CONbits.SWPAB = 0; //QEA and B not swapped
+    QEI2CONbits.PCDOUT = 1; //normal io pin operation
+    QEI2CONbits.POSRES = 1; //index pulse resets position
+    QEI2CONbits.QEIM = 6; //position counter reset by index
+    POS2CNT = 0; //reset position counter
+    MAX2CNT = 256;
+    DFLT2CONbits.QEOUT = 1;
+    DFLT2CONbits.QECK = 1;
+    //==========================
+
+}
+
+//initialize the quadrature encoder to not reset every rotation.  This has an
+//advantage in the the control can lag behind but eventually catch up.  It gets
+//complex to reset the encoder every rotation.  This wraps at 65535.
+void init_QEI_BIG_WRAP(void)
+{
+
+    //*****************module 1********************
+
+    //Make pins associated with encoder inputs...
+    _TRISB2 = INPUT;
+    _TRISB3 = INPUT;
+    _TRISB4 = INPUT;
+
+    QEI1CONbits.QEIM = 0; //disable QEI module for setup
+    QEI1CONbits.CNTERR = 0; //clear count errors
+    //QEI1CONbits.QEISIDLE = 0; //don't stop during sleep
+    QEI1CONbits.SWPAB = 0; //QEA and B not swapped
+    QEI1CONbits.PCDOUT = 1; //normal io pin operation
+    QEI1CONbits.POSRES = 0; //index pulse resets position
+    QEI1CONbits.QEIM = 0b111; //0b110; //position counter reset by index //101;//
+    POS1CNT = 0; //reset position counter
+    MAX1CNT = 65535;
+    DFLT1CONbits.QEOUT = 1;
+    DFLT1CONbits.QECK = 1;
+    //*********************************************
+
+
+    //^^^^^^^^^^^^^^^^^module 2^^^^^^^^^^^^^^^^^^^^
+
+    //Make pins associated with encoder inputs...
+    _TRISB5 = INPUT;
+    _TRISB6 = INPUT;
+    _TRISB7 = INPUT;
+
+    QEI2CONbits.QEIM = 0; //disable QEI module for setup
+    QEI2CONbits.CNTERR = 0; //clear count errors
+    //QEI1CONbits.QEISIDLE = 0; //don't stop during sleep
+    QEI2CONbits.SWPAB = 0; //QEA and B not swapped
+    QEI2CONbits.PCDOUT = 1; //normal io pin operation
+    QEI2CONbits.POSRES = 0; //index pulse resets position
+    QEI2CONbits.QEIM = 0b111; //position counter reset by index
+    POS2CNT = 0; //reset position counter
+    MAX2CNT = 65535;
+    DFLT2CONbits.QEOUT = 1;
+    DFLT2CONbits.QECK = 1;
+    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 }

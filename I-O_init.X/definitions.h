@@ -21,8 +21,6 @@ extern "C" {
 #define ON 0
 #define OFF 1
 
-#define ADCON 0
-#define ADCOFF 1
 
 #define INPUT 1
 #define OUTPUT 0
@@ -51,15 +49,6 @@ extern "C" {
 //analog direction controls
 #define I2C_Add_PIN_DIRECTION _TRISA4
 #define I2C_Add_PIN_ANALOG AD1PCFGLbits.PCFG4
-
-// The SparkFun breakout board defaults to 1, set to 0 if SA0 jumper on the bottom of the board is set
-#define MMA8452_ADDRESS 0x1D  // 0x1D if SA0 is high, 0x1C if low
-#define GSCALE 2 // Sets full-scale range to +/-2, 4, or 8g. Used to calc real g values.
-//Define a few of the registers that we will be accessing on the MMA8452
-#define OUT_X_MSB 0x01
-#define XYZ_DATA_CFG  0x0E
-#define WHO_AM_I   0x0D
-#define CTRL_REG1  0x2A
 
 
 #ifdef	__cplusplus

@@ -23,21 +23,17 @@
 
 
 int main(){
-    unsigned int waitTime=1000;
+//    unsigned int waitTime=1000;
     init_time();
+    init_ADCs();
     init_PWM();
     init_LEDs();
-    int blink=0;
 
     while(1){
         
-        delay(waitTime);
-        if(blink==0)GLED=ON;
-        else RLED=ON;
-        delay(waitTime);
-        GLED=OFF;
-        RLED=OFF;
+        
     }
+
     return (EXIT_SUCCESS);
 }
 

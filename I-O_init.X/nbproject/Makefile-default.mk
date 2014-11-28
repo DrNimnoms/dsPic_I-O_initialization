@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c dspic33config.c Init.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c dspic33config.c Init.c /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/ADC_func.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/dspic33config.o ${OBJECTDIR}/Init.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/dspic33config.o.d ${OBJECTDIR}/Init.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/dspic33config.o ${OBJECTDIR}/Init.o ${OBJECTDIR}/_ext/868551737/ADC_func.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/dspic33config.o.d ${OBJECTDIR}/Init.o.d ${OBJECTDIR}/_ext/868551737/ADC_func.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/dspic33config.o ${OBJECTDIR}/Init.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/dspic33config.o ${OBJECTDIR}/Init.o ${OBJECTDIR}/_ext/868551737/ADC_func.o
 
 # Source Files
-SOURCEFILES=main.c dspic33config.c Init.c
+SOURCEFILES=main.c dspic33config.c Init.c /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/ADC_func.c
 
 
 CFLAGS=
@@ -100,6 +100,13 @@ ${OBJECTDIR}/Init.o: Init.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  Init.c  -o ${OBJECTDIR}/Init.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Init.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1    -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/Init.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
+${OBJECTDIR}/_ext/868551737/ADC_func.o: /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/ADC_func.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR}/_ext/868551737 
+	@${RM} ${OBJECTDIR}/_ext/868551737/ADC_func.o.d 
+	@${RM} ${OBJECTDIR}/_ext/868551737/ADC_func.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/ADC_func.c  -o ${OBJECTDIR}/_ext/868551737/ADC_func.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/868551737/ADC_func.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1    -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/_ext/868551737/ADC_func.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
 else
 ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR} 
@@ -121,6 +128,13 @@ ${OBJECTDIR}/Init.o: Init.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/Init.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  Init.c  -o ${OBJECTDIR}/Init.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Init.o.d"        -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/Init.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/_ext/868551737/ADC_func.o: /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/ADC_func.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR}/_ext/868551737 
+	@${RM} ${OBJECTDIR}/_ext/868551737/ADC_func.o.d 
+	@${RM} ${OBJECTDIR}/_ext/868551737/ADC_func.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/ADC_func.c  -o ${OBJECTDIR}/_ext/868551737/ADC_func.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/868551737/ADC_func.o.d"        -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/_ext/868551737/ADC_func.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 
