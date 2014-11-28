@@ -2,14 +2,14 @@
 //	FILE NAME:		Init.c
 //
 //	DESCRIPTION: This file includes functions associated with intializing the
-//                   basic functionality of the module.  This includes things like
+//                   basic functionality of the Gemini Shield.  This includes things like
 //                   the encoder modules, mapping pins in the PPS setup (ie making
 //                   a particular pin the TX for serial output, as some pins are
 //                   mappable, and must be mapped), and the led pin directions.
 //
-//	AUTHOR: Nima Ghods
+//	AUTHOR: Nima Ghods and C. Alex Simpkins
 //
-//	COPYRIGHT 2014, Coactive Drive Corporation
+//	COPYRIGHT 2014, General Vibration Corporation
 //
 //================================================================================
 
@@ -21,8 +21,19 @@
 #include "prototypes.h"
 
 void init_I2C(void){
+
+    I2C_Add_PIN_DIRECTION = INPUT;
+    I2C_Add_PIN_ANALOG = ADCOFF;
+
     I2C1CONbits.I2CEN=1;  // Enables the I2Cx module and configures the SDAx and SCLx pins as serial port pins
 
+}
+
+void init_ADCs(void){
+    POT1_PIN_DIRECTION = INPUT;
+    POT2_PIN_DIRECTION = INPUT;
+    POT1_PIN_ANALOG = ADCON;
+    POT2_PIN_ANALOG = ADCON;
 }
 
 void init_PPS_mappings(void)
@@ -71,11 +82,6 @@ void init_PWM(void){
     PWM1CON1bits.PEN2H=1;
     PWM1CON1bits.PEN2L=1;
     P1TCONbits.PTEN = 1;     /* Turn ON PWM module */
-}
-
-void init_BUTTONs(void){
-    AD1PCFGLbits.PCFG0=1;
-    BUTTON_PIN_DIRECTION=INPUT;
 }
 
 void init_LEDs(void)

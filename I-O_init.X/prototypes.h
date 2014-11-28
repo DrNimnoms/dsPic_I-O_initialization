@@ -1,15 +1,15 @@
 //================================================================================
-//	FILE NAME:		definitions.h
+//	FILE NAME:		prototypes.h
 //
-//	DESCRIPTION: This file includes definitions for various useful values and
-//                   references.  The clock frequency is defined, several useful
-//                   pins and pin latch states are mapped to variables as well.
+//	DESCRIPTION: This file includes all function prototypes used throughout.
 //
-//	AUTHOR: Nima Ghods
+//	AUTHOR: Nima Ghods and C. Alex Simpkins
 //
-//	COPYRIGHT 2014, Coactive Drive Corporation
+//	COPYRIGHT 2014, General Vibration Corporation
 //
 //================================================================================
+
+#include <p33FJ128MC802.h>
 
 #ifndef PROTOTYPES_H
 #define	PROTOTYPES_H
@@ -21,7 +21,7 @@ extern "C" {
 //initializations...
 void init_time(void);           //initialize timer
 void init_LEDs(void);           //initialize LED outputs
-void init_BUTTONs(void);        //initialize Button outputs
+void init_ADCs(void);
 void init_PWM(void);            //initialize PWM outputs
 void init_PPS_mappings(void);   //set pin mapping
 void init_I2C(void);

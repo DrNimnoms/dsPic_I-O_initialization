@@ -3,9 +3,9 @@
 //
 //	DESCRIPTION: This file includes various global variables.
 //
-//	AUTHOR: Nima Ghods
+//	AUTHOR: Nima Ghods and C. Alex Simpkins
 //
-//	COPYRIGHT 2014, Coactive Drive Corporation
+//	COPYRIGHT 2014, General Vibration Corporation
 //
 //================================================================================
 

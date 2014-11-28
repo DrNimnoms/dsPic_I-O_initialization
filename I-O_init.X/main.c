@@ -7,7 +7,7 @@
 //
 //      EDITING: Nima Ghods
 //
-//
+//      COPYRIGHT 2014, General Vibration Corporation
 //================================================================================
 
 #include <stdio.h>
@@ -26,15 +26,10 @@ int main(){
     unsigned int waitTime=1000;
     init_time();
     init_PWM();
-    init_BUTTONs();
     init_LEDs();
     int blink=0;
 
     while(1){
-        if (BUTTON==0){
-            if(blink==0) blink=1;
-            else blink=0;
-        }
         
         delay(waitTime);
         if(blink==0)GLED=ON;

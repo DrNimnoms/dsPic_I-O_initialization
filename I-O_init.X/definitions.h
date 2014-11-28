@@ -5,9 +5,9 @@
 //                   references.  The clock frequency is defined, several useful
 //                   pins and pin latch states are mapped to variables as well.
 //
-//	AUTHOR: Nima Ghods
+//	AUTHOR: Nima Ghods and C. Alex Simpkins
 //
-//	COPYRIGHT 2014, Coactive Drive Corporation
+//	COPYRIGHT 2014, General Vibration Corporation
 //
 //================================================================================
 
@@ -21,23 +21,36 @@ extern "C" {
 #define ON 0
 #define OFF 1
 
+#define ADCON 0
+#define ADCOFF 1
+
 #define INPUT 1
 #define OUTPUT 0
 
 //led pins
-#define GLED _LATA3
-#define RLED _LATA4
+#define GLED _LATA2
+#define RLED _LATA3
 
-//button pins
-#define BUTTON _RA0
+//address pins
+#define I2C_Add _RA4
+
+//analog in pins
+#define POT1 _RA0
+#define POT2 _RA1
 
 //led direction controls
 #define GLED_PIN_DIRECTION _TRISA3
 #define RLED_PIN_DIRECTION _TRISA4
 
-//button direction controls
-#define BUTTON_PIN_DIRECTION _TRISA0
+//analog direction controls
+#define POT1_PIN_DIRECTION _TRISA0
+#define POT2_PIN_DIRECTION _TRISA1
+#define POT1_PIN_ANALOG AD1PCFGLbits.PCFG0
+#define POT2_PIN_ANALOG AD1PCFGLbits.PCFG1
 
+//analog direction controls
+#define I2C_Add_PIN_DIRECTION _TRISA4
+#define I2C_Add_PIN_ANALOG AD1PCFGLbits.PCFG4
 
 // The SparkFun breakout board defaults to 1, set to 0 if SA0 jumper on the bottom of the board is set
 #define MMA8452_ADDRESS 0x1D  // 0x1D if SA0 is high, 0x1C if low

@@ -3,7 +3,8 @@
 //#include <p33Fxxxx.h>
 
 
-// DSPIC33FJ128MC802 Configuration Bit Settings
+// DSPIC33FJ128MC802 Configuration Bit Settings- the contents of this file are generated automatically within mplab, but must be manually
+// pasted here.  If you change the drop down menu it will not change this file - it's up to the programmer to do so.
 
 
 // FBS
@@ -26,7 +27,7 @@
 
 // FOSC
 #pragma config POSCMD = NONE            // Primary Oscillator Source (Primary Oscillator Disabled)
-#pragma config OSCIOFNC = 0            // OSC2 Pin Function (OSC2 pin has digital I/O function)
+#pragma config OSCIOFNC = ON            // OSC2 Pin Function (OSC2 pin has digital I/O function)
 #pragma config IOL1WAY = OFF            // Peripheral Pin Select Configuration (Allow Multiple Re-configurations)
 #pragma config FCKSM = CSECMD           // Clock Switching and Monitor (Clock switching is enabled, Fail-Safe Clock Monitor is disabled)
 
@@ -38,7 +39,7 @@
 
 // FPOR
 #pragma config FPWRT = PWR128           // POR Timer Value (128ms)
-#pragma config ALTI2C = 1             // Alternate I2C  pins (I2C mapped to SDA1/SCL1 pins)
+#pragma config ALTI2C = OFF             // Alternate I2C  pins (I2C mapped to SDA1/SCL1 pins)
 #pragma config LPOL = ON                // Motor Control PWM Low Side Polarity bit (PWM module low side output pins have active-high output polarity)
 #pragma config HPOL = ON                // Motor Control PWM High Side Polarity bit (PWM module high side output pins have active-high output polarity)
 #pragma config PWMPIN = ON              // Motor Control PWM Module Pin Mode bit (PWM module pins controlled by PORT register at device Reset)
