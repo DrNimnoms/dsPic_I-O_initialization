@@ -21,7 +21,12 @@ extern "C" {
 // initializations...
 void init_time(void);           // initialize timer
 void init_LEDs(void);           // initialize LED outputs
+
 void init_ADCs(void);           // initialize ADC inputs
+void initTmr3(void);
+void initDma0(void);
+void __attribute__((__interrupt__)) _DMA0Interrupt(void);
+
 void init_PWM(void);            // initialize PWM outputs
 void init_PPS_mappings(void);   // set pin mapping
 void init_QEI(void);            //initialize quadrature modules

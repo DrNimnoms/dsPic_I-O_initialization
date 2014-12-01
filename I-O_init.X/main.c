@@ -21,17 +21,24 @@
 #include "globals.h"
 #include "prototypes.h"
 
+int adcTest=0;
+int i=0;
 
 int main(){
 //    unsigned int waitTime=1000;
+//    int adcTest=0;
     init_time();
-    init_ADCs();
-    init_PWM();
-    init_LEDs();
+
+    init_ADCs();    // Initialize the A/D converter to convert AN0 and AN1
+    initDma0();     // Initialise the DMA controller to buffer ADC data in conversion order
+    initTmr3();     // Initialise the Timer to generate sampling event to ADC @ 8Khz rate
+//    init_PWM();
+//    init_LEDs();
 
     while(1){
-        
-        
+//        adcTest=get_ADC(0);
+        delay(100);
+        i++;
     }
 
     return (EXIT_SUCCESS);

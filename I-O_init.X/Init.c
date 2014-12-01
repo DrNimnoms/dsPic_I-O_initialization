@@ -20,6 +20,7 @@
 #include "globals.h"
 #include "prototypes.h"
 
+
 void init_I2C(void){
 
     I2C_Add_PIN_DIRECTION = INPUT;      // set I2C address pin to input
@@ -28,17 +29,6 @@ void init_I2C(void){
 
     I2C1CONbits.I2CEN=1;  // Enables the I2Cx module and configures the SDAx and SCLx pins as serial port pins
 
-}
-
-void init_ADCs(void){
-    POT1_PIN_DIRECTION = INPUT; // set ADC pin to input
-    POT2_PIN_DIRECTION = INPUT; // set ADC pin to input
-    POT1_PIN_ANALOG = ON;       // set ADC pin to analog
-    POT2_PIN_ANALOG = ON;       // set ADC pin to analog
-    AD1CON2bits.VCFG=0;         // sets voltage reference to AVdd and AVss
-    AD1CON2bits.CHPS=1;
-    AD1CON1bits.ASAM=1;         // Sampling begins immediately after last conversion
-    AD1CON1bits.ADON=1;         // ADC module is operating
 }
 
 
@@ -62,9 +52,9 @@ void init_PWM(void){
     P1TPER = 792;            /* PTPER = ((792) * 25.24 ns) = 20 us, where 500ns
 							is the PWM period and 25.24 ns (39.61Mhz) is PWM resolution. */
 
-    P1DC1 = 200;             /* PWM1 duty cycle app 200 * 25.24ns */
+    P1DC1 = 400;             /* PWM1 duty cycle app 200 * 25.24ns */
 
-    P1DC2 = 200;             /* PWM2 duty cycle app 200 * 25.24ns */
+    P1DC2 = 400;             /* PWM2 duty cycle app 200 * 25.24ns */
 
     /* Note that a pulse appears only on every other PWM cycle. So in push-pull
        mode, the effective duty cycle is 25% */
@@ -86,6 +76,9 @@ void init_LEDs(void)
 
 void init_PPS_mappings(void)
 {
+    //  reconfigure peripheals and pins
+    __builtin_write_OSCCONL(OSCCON & 0xDF); // to clear IOLOCK
+
     //quadrature encoder 1
     _QEA1R = 2;   //RP2
     _QEB1R = 3;   //RP3
@@ -95,6 +88,8 @@ void init_PPS_mappings(void)
     _QEA2R = 5; //RP5
     _QEB2R = 6; //RP6
     _INDX2R = 7; //RP7
+
+    __builtin_write_OSCCONL(OSCCON | 0x40); // to set IOLOCK
 }
 
 void init_QEI(void)

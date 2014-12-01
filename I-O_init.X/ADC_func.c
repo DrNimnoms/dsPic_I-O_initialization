@@ -23,10 +23,12 @@
 //returns ADC value of the potentiometer requested, 1 or 2.
 int get_ADC(char pot_number)
 {
-    if(pot_number == 0) AD1CSSLbits.CSS0 = 1;
-    if(pot_number == 1) AD1CSSLbits.CSS1 = 1;
+//    if(pot_number == 0) AD1CSSLbits.CSS0 = 1;
+//    if(pot_number == 1) AD1CSSLbits.CSS1 = 1;
+    AD1CON1bits.SAMP = 1;
+    delay(10);
     AD1CON1bits.SAMP = 0;
     AD1CON1bits.DONE = 0;
-    while(AD1CON1bits.DONE);
+    while(AD1CON1bits.DONE == 0);
     return ADC1BUF0;
 }
