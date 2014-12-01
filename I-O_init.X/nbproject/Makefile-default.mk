@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c dspic33config.c Init.c /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/ADC_func.c /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/adc_init.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c dspic33config.c Init.c /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/ADC_func.c /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/adc_init.c /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/I2C_init.c /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/encoder_func.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/dspic33config.o ${OBJECTDIR}/Init.o ${OBJECTDIR}/_ext/868551737/ADC_func.o ${OBJECTDIR}/_ext/868551737/adc_init.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/dspic33config.o.d ${OBJECTDIR}/Init.o.d ${OBJECTDIR}/_ext/868551737/ADC_func.o.d ${OBJECTDIR}/_ext/868551737/adc_init.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/dspic33config.o ${OBJECTDIR}/Init.o ${OBJECTDIR}/_ext/868551737/ADC_func.o ${OBJECTDIR}/_ext/868551737/adc_init.o ${OBJECTDIR}/_ext/868551737/I2C_init.o ${OBJECTDIR}/_ext/868551737/encoder_func.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/dspic33config.o.d ${OBJECTDIR}/Init.o.d ${OBJECTDIR}/_ext/868551737/ADC_func.o.d ${OBJECTDIR}/_ext/868551737/adc_init.o.d ${OBJECTDIR}/_ext/868551737/I2C_init.o.d ${OBJECTDIR}/_ext/868551737/encoder_func.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/dspic33config.o ${OBJECTDIR}/Init.o ${OBJECTDIR}/_ext/868551737/ADC_func.o ${OBJECTDIR}/_ext/868551737/adc_init.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/dspic33config.o ${OBJECTDIR}/Init.o ${OBJECTDIR}/_ext/868551737/ADC_func.o ${OBJECTDIR}/_ext/868551737/adc_init.o ${OBJECTDIR}/_ext/868551737/I2C_init.o ${OBJECTDIR}/_ext/868551737/encoder_func.o
 
 # Source Files
-SOURCEFILES=main.c dspic33config.c Init.c /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/ADC_func.c /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/adc_init.c
+SOURCEFILES=main.c dspic33config.c Init.c /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/ADC_func.c /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/adc_init.c /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/I2C_init.c /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/encoder_func.c
 
 
 CFLAGS=
@@ -114,6 +114,20 @@ ${OBJECTDIR}/_ext/868551737/adc_init.o: /Users/nimaghods/Documents/GitHub/dsPic_
 	${MP_CC} $(MP_EXTRA_CC_PRE)  /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/adc_init.c  -o ${OBJECTDIR}/_ext/868551737/adc_init.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/868551737/adc_init.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1    -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/_ext/868551737/adc_init.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
+${OBJECTDIR}/_ext/868551737/I2C_init.o: /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/I2C_init.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR}/_ext/868551737 
+	@${RM} ${OBJECTDIR}/_ext/868551737/I2C_init.o.d 
+	@${RM} ${OBJECTDIR}/_ext/868551737/I2C_init.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/I2C_init.c  -o ${OBJECTDIR}/_ext/868551737/I2C_init.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/868551737/I2C_init.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1    -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/_ext/868551737/I2C_init.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/_ext/868551737/encoder_func.o: /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/encoder_func.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR}/_ext/868551737 
+	@${RM} ${OBJECTDIR}/_ext/868551737/encoder_func.o.d 
+	@${RM} ${OBJECTDIR}/_ext/868551737/encoder_func.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/encoder_func.c  -o ${OBJECTDIR}/_ext/868551737/encoder_func.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/868551737/encoder_func.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1    -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/_ext/868551737/encoder_func.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
 else
 ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR} 
@@ -149,6 +163,20 @@ ${OBJECTDIR}/_ext/868551737/adc_init.o: /Users/nimaghods/Documents/GitHub/dsPic_
 	@${RM} ${OBJECTDIR}/_ext/868551737/adc_init.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/adc_init.c  -o ${OBJECTDIR}/_ext/868551737/adc_init.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/868551737/adc_init.o.d"        -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/_ext/868551737/adc_init.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/_ext/868551737/I2C_init.o: /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/I2C_init.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR}/_ext/868551737 
+	@${RM} ${OBJECTDIR}/_ext/868551737/I2C_init.o.d 
+	@${RM} ${OBJECTDIR}/_ext/868551737/I2C_init.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/I2C_init.c  -o ${OBJECTDIR}/_ext/868551737/I2C_init.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/868551737/I2C_init.o.d"        -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/_ext/868551737/I2C_init.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/_ext/868551737/encoder_func.o: /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/encoder_func.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR}/_ext/868551737 
+	@${RM} ${OBJECTDIR}/_ext/868551737/encoder_func.o.d 
+	@${RM} ${OBJECTDIR}/_ext/868551737/encoder_func.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  /Users/nimaghods/Documents/GitHub/dsPic_I-O_initialization/I-O_init.X/encoder_func.c  -o ${OBJECTDIR}/_ext/868551737/encoder_func.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/868551737/encoder_func.o.d"        -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/_ext/868551737/encoder_func.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 

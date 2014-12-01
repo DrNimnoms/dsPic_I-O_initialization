@@ -21,17 +21,6 @@
 #include "prototypes.h"
 
 
-void init_I2C(void){
-
-    I2C_Add_PIN_DIRECTION = INPUT;      // set I2C address pin to input
-    I2C_Add_PIN_ANALOG = OFF;        // set I2C address pin to digital
-    //I2C_Add                           //I2C_Add is 0 or 1 depending on which gemini drive control it is on the shield
-
-    I2C1CONbits.I2CEN=1;  // Enables the I2Cx module and configures the SDAx and SCLx pins as serial port pins
-
-}
-
-
 void init_time(void){
    /* Configure Oscillator to operate the device at 40Mhz
 	   Fosc= Fin*M/(N1*N2), Fcy=Fosc/2

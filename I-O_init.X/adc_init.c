@@ -39,7 +39,7 @@ void init_ADCs(void){
     AD1CON1bits.AD12B  = 0;		// 10-bit ADC operation
 
 
-    AD1CON2bits.ALTS  = 1;			// Alternate Input Sample Mode Select Bit
+    AD1CON2bits.ALTS  = 1;		// Alternate Input Sample Mode Select Bit
     AD1CON2bits.CHPS  = 0;		// Converts CH0
 
     AD1CON3bits.ADRC = 0;		// ADC Clock is derived from Systems Clock

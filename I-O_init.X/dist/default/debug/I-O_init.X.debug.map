@@ -26,6 +26,8 @@ Command:
   build/default/debug/Init.o \
   build/default/debug/_ext/868551737/ADC_func.o \
   build/default/debug/_ext/868551737/adc_init.o \
+  build/default/debug/_ext/868551737/I2C_init.o \
+  build/default/debug/_ext/868551737/encoder_func.o \
   --defsym=__MPLAB_BUILD=1 \
   --defsym=__ICD2RAM=1 \
   --defsym=__MPLAB_DEBUG=1 \
@@ -54,6 +56,10 @@ Command:
 
 Archive member included because of file (symbol)
 
+/Applications/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC33F/libp33FJ128MC802-elf.a(ReadQEI1.o)
+                              build/default/debug/_ext/868551737/encoder_func.o (_ReadQEI1)
+/Applications/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC33F/libp33FJ128MC802-elf.a(ReadQEI2.o)
+                              build/default/debug/_ext/868551737/encoder_func.o (_ReadQEI2)
 /Applications/microchip/xc16/v1.21/bin/bin/../../lib/libpic30-elf.a(crt0_standard.o)
                               (__resetPRI)
 /Applications/microchip/xc16/v1.21/bin/bin/../../lib/libpic30-elf.a(data_init_standard.o)
@@ -64,11 +70,12 @@ Program Memory  [Origin = 0x200, Length = 0x155fe]
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200                0x98            0xe4  (228)
-.text                        0x298               0x30c           0x492  (1170)
-.dinit                       0x5a4                0x20            0x30  (48)
+.text                        0x200                0xa0            0xf0  (240)
+.text                        0x2a0               0x40a           0x60f  (1551)
+.dinit                       0x6aa                0x28            0x3c  (60)
+.text                        0x6d2                0x20            0x30  (48)
 
-                     Total program memory used (bytes):          0x5a6  (1446) 1%
+                     Total program memory used (bytes):          0x76b  (1899) 1%
 
 
 Data Memory  [Origin = 0x800, Length = 0x4000]
@@ -76,11 +83,12 @@ Data Memory  [Origin = 0x800, Length = 0x4000]
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
 .icd                         0x800                0x50            0x50  (80)
-.ndata                       0x850                   0             0x6  (6)
-_0x10b89b4547bdd68          0x4780                   0            0x40  (64)
-_0x10b8a10547bdd68          0x47c0                   0            0x40  (64)
+.nbss                        0x850                   0           0x104  (260)
+.ndata                       0x954                   0             0xa  (10)
+_0x10b89b4547be5ff          0x4780                   0            0x40  (64)
+_0x10b8a10547be5ff          0x47c0                   0            0x40  (64)
 
-                        Total data memory used (bytes):           0xd6  (214) 1%
+                        Total data memory used (bytes):          0x1de  (478) 2%
 
 
 Dynamic Memory Usage
@@ -88,16 +96,21 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x856                              0x3f2a  (16170)
+stack                        0x95e                              0x3e22  (15906)
 
-                        Maximum dynamic memory (bytes):         0x3f2a  (16170)
+                        Maximum dynamic memory (bytes):         0x3e22  (15906)
 
 
 External Symbols in Data Memory (by address):
 
-                    0x0850                  _adcTest
-                    0x0852                  _i
-                    0x0854                  _DmaBuffer
+                    0x0850                  _RAMBuffer
+                    0x0950                  _RAMPtr
+                    0x0952                  _Flag
+                    0x0954                  _adcTest
+                    0x0956                  _encode0
+                    0x0958                  _encode1
+                    0x095a                  _i
+                    0x095c                  _DmaBuffer
                     0x4780                  _BufferA
                     0x47c0                  _BufferB
 
@@ -105,9 +118,14 @@ External Symbols in Data Memory (by name):
 
                     0x4780                  _BufferA
                     0x47c0                  _BufferB
-                    0x0854                  _DmaBuffer
-                    0x0850                  _adcTest
-                    0x0852                  _i
+                    0x095c                  _DmaBuffer
+                    0x0952                  _Flag
+                    0x0850                  _RAMBuffer
+                    0x0950                  _RAMPtr
+                    0x0954                  _adcTest
+                    0x0956                  _encode0
+                    0x0958                  _encode1
+                    0x095a                  _i
 
 External Symbols in Program Memory (by address):
 
@@ -116,44 +134,52 @@ External Symbols in Program Memory (by address):
                   0x000236                  __data_init_standard
                   0x000236                  __data_init
                   0x000294                  __DefaultInterrupt
-                  0x000298                  _init_I2C
-                  0x0002a4                  _init_time
-                  0x0002d2                  _init_PWM
-                  0x0002ee                  _init_LEDs
-                  0x0002fc                  _init_PPS_mappings
-                  0x000366                  _init_QEI
-                  0x0003d8                  _init_QEI_BIG_WRAP
-                  0x00044a                  _init_ADCs
-                  0x0004b2                  _initTmr3
-                  0x0004c6                  _initDma0
-                  0x0004f6                  __DMA0Interrupt
-                  0x00053c                  _ProcessADCSamples
-                  0x000544                  _main
-                  0x00055a                  _delay
-                  0x000584                  _get_ADC
+                  0x000298                  _ReadQEI1
+                  0x00029c                  _ReadQEI2
+                  0x0002a0                  _init_time
+                  0x0002ce                  _init_PWM
+                  0x0002ea                  _init_LEDs
+                  0x0002f8                  _init_PPS_mappings
+                  0x000362                  _init_QEI
+                  0x0003d4                  _init_QEI_BIG_WRAP
+                  0x000446                  _init_ADCs
+                  0x0004ae                  _initTmr3
+                  0x0004c2                  _initDma0
+                  0x0004f2                  __DMA0Interrupt
+                  0x000538                  _ProcessADCSamples
+                  0x000540                  _init_I2C
+                  0x000568                  __SI2C1Interrupt
+                  0x000606                  _main
+                  0x000658                  _delay
+                  0x000682                  _get_position
+                  0x0006d2                  _get_ADC
 
 External Symbols in Program Memory (by name):
 
-                  0x00053c                  _ProcessADCSamples
-                  0x0004f6                  __DMA0Interrupt
+                  0x000538                  _ProcessADCSamples
+                  0x000298                  _ReadQEI1
+                  0x00029c                  _ReadQEI2
+                  0x0004f2                  __DMA0Interrupt
                   0x000294                  __DefaultInterrupt
+                  0x000568                  __SI2C1Interrupt
                   0x000236                  __data_init
                   0x000236                  __data_init_standard
                   0x000226                  __psv_init
                   0x000200                  __resetPRI
-                  0x00055a                  _delay
-                  0x000584                  _get_ADC
-                  0x0004c6                  _initDma0
-                  0x0004b2                  _initTmr3
-                  0x00044a                  _init_ADCs
-                  0x000298                  _init_I2C
-                  0x0002ee                  _init_LEDs
-                  0x0002fc                  _init_PPS_mappings
-                  0x0002d2                  _init_PWM
-                  0x000366                  _init_QEI
-                  0x0003d8                  _init_QEI_BIG_WRAP
-                  0x0002a4                  _init_time
-                  0x000544                  _main
+                  0x000658                  _delay
+                  0x0006d2                  _get_ADC
+                  0x000682                  _get_position
+                  0x0004c2                  _initDma0
+                  0x0004ae                  _initTmr3
+                  0x000446                  _init_ADCs
+                  0x000540                  _init_I2C
+                  0x0002ea                  _init_LEDs
+                  0x0002f8                  _init_PPS_mappings
+                  0x0002ce                  _init_PWM
+                  0x000362                  _init_QEI
+                  0x0003d4                  _init_QEI_BIG_WRAP
+                  0x0002a0                  _init_time
+                  0x000606                  _main
 
 Memory Configuration
 
@@ -185,6 +211,8 @@ LOAD build/default/debug/dspic33config.o
 LOAD build/default/debug/Init.o
 LOAD build/default/debug/_ext/868551737/ADC_func.o
 LOAD build/default/debug/_ext/868551737/adc_init.o
+LOAD build/default/debug/_ext/868551737/I2C_init.o
+LOAD build/default/debug/_ext/868551737/encoder_func.o
                     0x0001                  __MPLAB_BUILD = 0x1
                     0x0001                  __ICD2RAM = 0x1
                     0x0001                  __MPLAB_DEBUG = 0x1
@@ -219,7 +247,7 @@ LOAD /Applications/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC33F/libp33FJ128MC
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200         0x98
+.text             0x000200         0xa0
  *(.init)
  .init            0x000200         0x36 /Applications/microchip/xc16/v1.21/bin/bin/../../lib/libpic30-elf.a(crt0_standard.o)
                   0x000200                  __reset
@@ -237,6 +265,10 @@ LOAD /Applications/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC33F/libp33FJ128MC
  *(.libm)
  *(.libdsp)
  *(.lib*)
+ .libperi         0x000298          0x4 /Applications/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC33F/libp33FJ128MC802-elf.a(ReadQEI1.o)
+                  0x000298                  _ReadQEI1
+ .libperi         0x00029c          0x4 /Applications/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC33F/libp33FJ128MC802-elf.a(ReadQEI2.o)
+                  0x00029c                  _ReadQEI2
 
 usercode
  *(usercode)
@@ -284,42 +316,52 @@ __FUID3
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x3013
+.debug_info       0x000000       0x3a31
  *(.debug_info)
- .debug_info      0x000000        0x194 build/default/debug/main.o
- .debug_info      0x000194       0x1a4d build/default/debug/Init.o
- .debug_info      0x001be1        0x2c8 build/default/debug/_ext/868551737/ADC_func.o
- .debug_info      0x001ea9       0x116a build/default/debug/_ext/868551737/adc_init.o
+ .debug_info      0x000000        0x21d build/default/debug/main.o
+ .debug_info      0x00021d       0x17f7 build/default/debug/Init.o
+ .debug_info      0x001a14        0x2c8 build/default/debug/_ext/868551737/ADC_func.o
+ .debug_info      0x001cdc       0x116a build/default/debug/_ext/868551737/adc_init.o
+ .debug_info      0x002e46        0xada build/default/debug/_ext/868551737/I2C_init.o
+ .debug_info      0x003920        0x111 build/default/debug/_ext/868551737/encoder_func.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x34c
+.debug_abbrev     0x000000        0x513
  *(.debug_abbrev)
- .debug_abbrev    0x000000         0x8b build/default/debug/main.o
- .debug_abbrev    0x00008b          0x1 build/default/debug/dspic33config.o
- .debug_abbrev    0x00008c         0xcd build/default/debug/Init.o
- .debug_abbrev    0x000159         0xb8 build/default/debug/_ext/868551737/ADC_func.o
- .debug_abbrev    0x000211        0x13b build/default/debug/_ext/868551737/adc_init.o
+ .debug_abbrev    0x000000         0xae build/default/debug/main.o
+ .debug_abbrev    0x0000ae          0x1 build/default/debug/dspic33config.o
+ .debug_abbrev    0x0000af         0xcd build/default/debug/Init.o
+ .debug_abbrev    0x00017c         0xb8 build/default/debug/_ext/868551737/ADC_func.o
+ .debug_abbrev    0x000234        0x13b build/default/debug/_ext/868551737/adc_init.o
+ .debug_abbrev    0x00036f        0x15f build/default/debug/_ext/868551737/I2C_init.o
+ .debug_abbrev    0x0004ce         0x45 build/default/debug/_ext/868551737/encoder_func.o
 
-.debug_line       0x000000        0x84b
+.debug_line       0x000000        0xb48
  *(.debug_line)
- .debug_line      0x000000         0xaa build/default/debug/main.o
- .debug_line      0x0000aa         0x24 build/default/debug/dspic33config.o
- .debug_line      0x0000ce        0x3b3 build/default/debug/Init.o
- .debug_line      0x000481        0x119 build/default/debug/_ext/868551737/ADC_func.o
- .debug_line      0x00059a        0x2b1 build/default/debug/_ext/868551737/adc_init.o
+ .debug_line      0x000000        0x103 build/default/debug/main.o
+ .debug_line      0x000103         0x24 build/default/debug/dspic33config.o
+ .debug_line      0x000127        0x381 build/default/debug/Init.o
+ .debug_line      0x0004a8        0x119 build/default/debug/_ext/868551737/ADC_func.o
+ .debug_line      0x0005c1        0x2b1 build/default/debug/_ext/868551737/adc_init.o
+ .debug_line      0x000872        0x218 build/default/debug/_ext/868551737/I2C_init.o
+ .debug_line      0x000a8a         0xbe build/default/debug/_ext/868551737/encoder_func.o
 
-.debug_frame      0x000000        0x140
+.debug_frame      0x000000        0x188
  *(.debug_frame)
  .debug_frame     0x000000         0x34 build/default/debug/main.o
- .debug_frame     0x000034         0x84 build/default/debug/Init.o
- .debug_frame     0x0000b8         0x24 build/default/debug/_ext/868551737/ADC_func.o
- .debug_frame     0x0000dc         0x64 build/default/debug/_ext/868551737/adc_init.o
+ .debug_frame     0x000034         0x74 build/default/debug/Init.o
+ .debug_frame     0x0000a8         0x24 build/default/debug/_ext/868551737/ADC_func.o
+ .debug_frame     0x0000cc         0x64 build/default/debug/_ext/868551737/adc_init.o
+ .debug_frame     0x000130         0x34 build/default/debug/_ext/868551737/I2C_init.o
+ .debug_frame     0x000164         0x24 build/default/debug/_ext/868551737/encoder_func.o
 
-.debug_str        0x000000        0x186
+.debug_str        0x000000        0x1cd
  *(.debug_str)
- .debug_str       0x000000         0xda build/default/debug/Init.o
- .debug_str       0x0000da         0x15 build/default/debug/_ext/868551737/ADC_func.o
- .debug_str       0x0000ef         0x97 build/default/debug/_ext/868551737/adc_init.o
+ .debug_str       0x000000          0xa build/default/debug/main.o
+ .debug_str       0x00000a         0xc1 build/default/debug/Init.o
+ .debug_str       0x0000cb         0x15 build/default/debug/_ext/868551737/ADC_func.o
+ .debug_str       0x0000e0         0x97 build/default/debug/_ext/868551737/adc_init.o
+ .debug_str       0x000177         0x56 build/default/debug/_ext/868551737/I2C_init.o
 
 .debug_loc
  *(.debug_loc)
@@ -328,21 +370,25 @@ __FUID3
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x15f
+                  0x000000        0x1e2
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x37 build/default/debug/main.o
+                  0x000000         0x4f build/default/debug/main.o
  .debug_pubnames
-                  0x000037         0x81 build/default/debug/Init.o
+                  0x00004f         0x74 build/default/debug/Init.o
  .debug_pubnames
-                  0x0000b8         0x1e build/default/debug/_ext/868551737/ADC_func.o
+                  0x0000c3         0x1e build/default/debug/_ext/868551737/ADC_func.o
  .debug_pubnames
-                  0x0000d6         0x89 build/default/debug/_ext/868551737/adc_init.o
+                  0x0000e1         0x89 build/default/debug/_ext/868551737/adc_init.o
+ .debug_pubnames
+                  0x00016a         0x55 build/default/debug/_ext/868551737/I2C_init.o
+ .debug_pubnames
+                  0x0001bf         0x23 build/default/debug/_ext/868551737/encoder_func.o
 
 .debug_ranges
  *(.debug_ranges)
 
-.debug_aranges    0x000000         0x60
+.debug_aranges    0x000000         0x90
  *(.debug_aranges)
  .debug_aranges
                   0x000000         0x18 build/default/debug/main.o
@@ -352,6 +398,10 @@ __FUID3
                   0x000030         0x18 build/default/debug/_ext/868551737/ADC_func.o
  .debug_aranges
                   0x000048         0x18 build/default/debug/_ext/868551737/adc_init.o
+ .debug_aranges
+                  0x000060         0x18 build/default/debug/_ext/868551737/I2C_init.o
+ .debug_aranges
+                  0x000078         0x18 build/default/debug/_ext/868551737/encoder_func.o
 
 .ivt              0x000004         0xfc
                   0x000004          0x4 LONG 0x294 DEFINED (__ReservedTrap0)?ABSOLUTE (__ReservedTrap0):ABSOLUTE (__DefaultInterrupt)
@@ -366,7 +416,7 @@ __FUID3
                   0x000016          0x4 LONG 0x294 DEFINED (__IC1Interrupt)?ABSOLUTE (__IC1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000018          0x4 LONG 0x294 DEFINED (__OC1Interrupt)?ABSOLUTE (__OC1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00001a          0x4 LONG 0x294 DEFINED (__T1Interrupt)?ABSOLUTE (__T1Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x00001c          0x4 LONG 0x4f6 DEFINED (__DMA0Interrupt)?ABSOLUTE (__DMA0Interrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x00001c          0x4 LONG 0x4f2 DEFINED (__DMA0Interrupt)?ABSOLUTE (__DMA0Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00001e          0x4 LONG 0x294 DEFINED (__IC2Interrupt)?ABSOLUTE (__IC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000020          0x4 LONG 0x294 DEFINED (__OC2Interrupt)?ABSOLUTE (__OC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000022          0x4 LONG 0x294 DEFINED (__T2Interrupt)?ABSOLUTE (__T2Interrupt):ABSOLUTE (__DefaultInterrupt)
@@ -378,7 +428,7 @@ __FUID3
                   0x00002e          0x4 LONG 0x294 DEFINED (__ADC1Interrupt)?ABSOLUTE (__ADC1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000030          0x4 LONG 0x294 DEFINED (__DMA1Interrupt)?ABSOLUTE (__DMA1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000032          0x4 LONG 0x294 DEFINED (__Interrupt15)?ABSOLUTE (__Interrupt15):ABSOLUTE (__DefaultInterrupt)
-                  0x000034          0x4 LONG 0x294 DEFINED (__SI2C1Interrupt)?ABSOLUTE (__SI2C1Interrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x000034          0x4 LONG 0x568 DEFINED (__SI2C1Interrupt)?ABSOLUTE (__SI2C1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000036          0x4 LONG 0x294 DEFINED (__MI2C1Interrupt)?ABSOLUTE (__MI2C1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000038          0x4 LONG 0x294 DEFINED (__CMPInterrupt)?ABSOLUTE (__CMPInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00003a          0x4 LONG 0x294 DEFINED (__CNInterrupt)?ABSOLUTE (__CNInterrupt):ABSOLUTE (__DefaultInterrupt)
@@ -494,7 +544,7 @@ __FUID3
                   0x000116          0x4 LONG 0x294 DEFINED (__AltIC1Interrupt)?ABSOLUTE (__AltIC1Interrupt):DEFINED (__IC1Interrupt)?ABSOLUTE (__IC1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000118          0x4 LONG 0x294 DEFINED (__AltOC1Interrupt)?ABSOLUTE (__AltOC1Interrupt):DEFINED (__OC1Interrupt)?ABSOLUTE (__OC1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00011a          0x4 LONG 0x294 DEFINED (__AltT1Interrupt)?ABSOLUTE (__AltT1Interrupt):DEFINED (__T1Interrupt)?ABSOLUTE (__T1Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x00011c          0x4 LONG 0x4f6 DEFINED (__AltDMA0Interrupt)?ABSOLUTE (__AltDMA0Interrupt):DEFINED (__DMA0Interrupt)?ABSOLUTE (__DMA0Interrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x00011c          0x4 LONG 0x4f2 DEFINED (__AltDMA0Interrupt)?ABSOLUTE (__AltDMA0Interrupt):DEFINED (__DMA0Interrupt)?ABSOLUTE (__DMA0Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00011e          0x4 LONG 0x294 DEFINED (__AltIC2Interrupt)?ABSOLUTE (__AltIC2Interrupt):DEFINED (__IC2Interrupt)?ABSOLUTE (__IC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000120          0x4 LONG 0x294 DEFINED (__AltOC2Interrupt)?ABSOLUTE (__AltOC2Interrupt):DEFINED (__OC2Interrupt)?ABSOLUTE (__OC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000122          0x4 LONG 0x294 DEFINED (__AltT2Interrupt)?ABSOLUTE (__AltT2Interrupt):DEFINED (__T2Interrupt)?ABSOLUTE (__T2Interrupt):ABSOLUTE (__DefaultInterrupt)
@@ -506,7 +556,7 @@ __FUID3
                   0x00012e          0x4 LONG 0x294 DEFINED (__AltADC1Interrupt)?ABSOLUTE (__AltADC1Interrupt):DEFINED (__ADC1Interrupt)?ABSOLUTE (__ADC1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000130          0x4 LONG 0x294 DEFINED (__AltDMA1Interrupt)?ABSOLUTE (__AltDMA1Interrupt):DEFINED (__DMA1Interrupt)?ABSOLUTE (__DMA1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000132          0x4 LONG 0x294 DEFINED (__AltInterrupt15)?ABSOLUTE (__AltInterrupt15):DEFINED (__Interrupt15)?ABSOLUTE (__Interrupt15):ABSOLUTE (__DefaultInterrupt)
-                  0x000134          0x4 LONG 0x294 DEFINED (__AltSI2C1Interrupt)?ABSOLUTE (__AltSI2C1Interrupt):DEFINED (__SI2C1Interrupt)?ABSOLUTE (__SI2C1Interrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x000134          0x4 LONG 0x568 DEFINED (__AltSI2C1Interrupt)?ABSOLUTE (__AltSI2C1Interrupt):DEFINED (__SI2C1Interrupt)?ABSOLUTE (__SI2C1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000136          0x4 LONG 0x294 DEFINED (__AltMI2C1Interrupt)?ABSOLUTE (__AltMI2C1Interrupt):DEFINED (__MI2C1Interrupt)?ABSOLUTE (__MI2C1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000138          0x4 LONG 0x294 DEFINED (__AltCMPInterrupt)?ABSOLUTE (__AltCMPInterrupt):DEFINED (__CMPInterrupt)?ABSOLUTE (__CMPInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00013a          0x4 LONG 0x294 DEFINED (__AltCNInterrupt)?ABSOLUTE (__AltCNInterrupt):DEFINED (__CNInterrupt)?ABSOLUTE (__CNInterrupt):ABSOLUTE (__DefaultInterrupt)
@@ -1699,51 +1749,71 @@ LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x000060        0x442
+                  0x000090        0x510
  .debug_pubtypes
-                  0x000060         0x12 build/default/debug/main.o
+                  0x000090         0x12 build/default/debug/main.o
  .debug_pubtypes
-                  0x000072        0x27a build/default/debug/Init.o
+                  0x0000a2        0x232 build/default/debug/Init.o
  .debug_pubtypes
-                  0x0002ec         0x35 build/default/debug/_ext/868551737/ADC_func.o
+                  0x0002d4         0x35 build/default/debug/_ext/868551737/ADC_func.o
  .debug_pubtypes
-                  0x000321        0x181 build/default/debug/_ext/868551737/adc_init.o
+                  0x000309        0x181 build/default/debug/_ext/868551737/adc_init.o
+ .debug_pubtypes
+                  0x00048a        0x104 build/default/debug/_ext/868551737/I2C_init.o
+ .debug_pubtypes
+                  0x00058e         0x12 build/default/debug/_ext/868551737/encoder_func.o
 
 __c30_signature
-                  0x0004a2         0x2a
+                  0x0005a0         0x42
  __c30_signature
-                  0x0004a2          0x6 build/default/debug/main.o
+                  0x0005a0          0x6 build/default/debug/main.o
  __c30_signature
-                  0x0004a8          0x6 build/default/debug/dspic33config.o
+                  0x0005a6          0x6 build/default/debug/dspic33config.o
  __c30_signature
-                  0x0004ae          0x6 build/default/debug/Init.o
+                  0x0005ac          0x6 build/default/debug/Init.o
  __c30_signature
-                  0x0004b4          0x6 build/default/debug/_ext/868551737/ADC_func.o
+                  0x0005b2          0x6 build/default/debug/_ext/868551737/ADC_func.o
  __c30_signature
-                  0x0004ba          0x6 build/default/debug/_ext/868551737/adc_init.o
+                  0x0005b8          0x6 build/default/debug/_ext/868551737/adc_init.o
  __c30_signature
-                  0x0004c0          0x6 /Applications/microchip/xc16/v1.21/bin/bin/../../lib/libpic30-elf.a(crt0_standard.o)
+                  0x0005be          0x6 build/default/debug/_ext/868551737/I2C_init.o
  __c30_signature
-                  0x0004c6          0x6 /Applications/microchip/xc16/v1.21/bin/bin/../../lib/libpic30-elf.a(data_init_standard.o)
+                  0x0005c4          0x6 build/default/debug/_ext/868551737/encoder_func.o
+ __c30_signature
+                  0x0005ca          0x6 /Applications/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC33F/libp33FJ128MC802-elf.a(ReadQEI1.o)
+ __c30_signature
+                  0x0005d0          0x6 /Applications/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC33F/libp33FJ128MC802-elf.a(ReadQEI2.o)
+ __c30_signature
+                  0x0005d6          0x6 /Applications/microchip/xc16/v1.21/bin/bin/../../lib/libpic30-elf.a(crt0_standard.o)
+ __c30_signature
+                  0x0005dc          0x6 /Applications/microchip/xc16/v1.21/bin/bin/../../lib/libpic30-elf.a(data_init_standard.o)
 
-_0x10b89b4547bdd68
+_0x10b89b4547be5ff
                     0x4780         0x40
- _0x10b89b4547bdd68
+ _0x10b89b4547be5ff
                     0x4780         0x40 build/default/debug/_ext/868551737/adc_init.o
                     0x4780                  _BufferA
 
-_0x10b8a10547bdd68
+_0x10b8a10547be5ff
                     0x47c0         0x40
- _0x10b8a10547bdd68
+ _0x10b8a10547be5ff
                     0x47c0         0x40 build/default/debug/_ext/868551737/adc_init.o
                     0x47c0                  _BufferB
 
-.ndata              0x0850          0x6
- .ndata             0x0850          0x4 build/default/debug/main.o
-                    0x0850                  _adcTest
-                    0x0852                  _i
- .ndata             0x0854          0x2 build/default/debug/_ext/868551737/adc_init.o
-                    0x0854                  _DmaBuffer
+.nbss               0x0850        0x104
+ .nbss              0x0850        0x104 build/default/debug/_ext/868551737/I2C_init.o
+                    0x0850                  _RAMBuffer
+                    0x0950                  _RAMPtr
+                    0x0952                  _Flag
+
+.ndata              0x0954          0xa
+ .ndata             0x0954          0x8 build/default/debug/main.o
+                    0x0954                  _adcTest
+                    0x0956                  _encode0
+                    0x0958                  _encode1
+                    0x095a                  _i
+ .ndata             0x095c          0x2 build/default/debug/_ext/868551737/adc_init.o
+                    0x095c                  _DmaBuffer
 
 .config_JTAGEN    0xf8000e          0x2
  .config_JTAGEN
@@ -1772,26 +1842,32 @@ _0x10b8a10547bdd68
 .config_RBS       0xf80000          0x2
  .config_RBS      0xf80000          0x2 build/default/debug/dspic33config.o
 
-.text             0x000298        0x30c
- .text            0x000298        0x1b2 build/default/debug/Init.o
-                  0x000298                  _init_I2C
-                  0x0002a4                  _init_time
-                  0x0002d2                  _init_PWM
-                  0x0002ee                  _init_LEDs
-                  0x0002fc                  _init_PPS_mappings
-                  0x000366                  _init_QEI
-                  0x0003d8                  _init_QEI_BIG_WRAP
- .text            0x00044a         0xfa build/default/debug/_ext/868551737/adc_init.o
-                  0x00044a                  _init_ADCs
-                  0x0004b2                  _initTmr3
-                  0x0004c6                  _initDma0
-                  0x0004f6                  __DMA0Interrupt
-                  0x00053c                  _ProcessADCSamples
- .text            0x000544         0x40 build/default/debug/main.o
-                  0x000544                  _main
-                  0x00055a                  _delay
- .text            0x000584         0x20 build/default/debug/_ext/868551737/ADC_func.o
-                  0x000584                  _get_ADC
+.text             0x0002a0        0x40a
+ .text            0x0002a0        0x1a6 build/default/debug/Init.o
+                  0x0002a0                  _init_time
+                  0x0002ce                  _init_PWM
+                  0x0002ea                  _init_LEDs
+                  0x0002f8                  _init_PPS_mappings
+                  0x000362                  _init_QEI
+                  0x0003d4                  _init_QEI_BIG_WRAP
+ .text            0x000446         0xfa build/default/debug/_ext/868551737/adc_init.o
+                  0x000446                  _init_ADCs
+                  0x0004ae                  _initTmr3
+                  0x0004c2                  _initDma0
+                  0x0004f2                  __DMA0Interrupt
+                  0x000538                  _ProcessADCSamples
+ .text            0x000540         0xc6 build/default/debug/_ext/868551737/I2C_init.o
+                  0x000540                  _init_I2C
+                  0x000568                  __SI2C1Interrupt
+ .text            0x000606         0x7c build/default/debug/main.o
+                  0x000606                  _main
+                  0x000658                  _delay
+ .text            0x000682         0x28 build/default/debug/_ext/868551737/encoder_func.o
+                  0x000682                  _get_position
 
-.dinit            0x0005a4         0x20
- .dinit           0x0005a4         0x20 data_init
+.dinit            0x0006aa         0x28
+ .dinit           0x0006aa         0x28 data_init
+
+.text             0x0006d2         0x20
+ .text            0x0006d2         0x20 build/default/debug/_ext/868551737/ADC_func.o
+                  0x0006d2                  _get_ADC

@@ -37,7 +37,7 @@ void init_I2C(void);            // initialize I2C communication
 int get_ADC(char pot_number);   // read the ADC from the given pot number
 
 // motor functions
-
+long get_position(char /*encoder_number*/);                           //returns position or possibly can put position into a global variable array
 
 
 
